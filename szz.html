@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>页面标题szzfyxk</title>
+<script>
+// 当文档加载完毕后，添加事件监听器到上传按钮
+document.addEventListener('DOMContentLoaded', (event) => {
+    // 获取上传按钮
+    const uploadButton = document.getElementById('uploadButton');
+    // 为上传按钮添加点击事件监听器
+    uploadButton.addEventListener('click', function() {
+        const inputElement = document.getElementById('fileInput');
+        inputElement.click(); // 触发文件选择对话框
+    });
+
+    // 监听文件选择的变化
+    const fileInput = document.getElementById('fileInput');
+    fileInput.addEventListener('change', function(event) {
+        if (event.target.files.length > 0) {
+            // 创建一个新的Image对象
+            const img = new Image();
+            img.onload = function() {
+                // 当图片加载完毕，显示图片
+                const imageContainer = document.getElementById('imageContainer');
+                imageContainer.innerHTML = `<img src="${img.src}" alt="Uploaded Image" width="258" height="258" />`;
+            };
+            // 设置图片的src属性为选中的文件
+            img.src = URL.createObjectURL(event.target.files[0]);
+        }
+    });
+});
+</script>
+</head>
+<body>
+
+<h1>我的第一个标题</h1>
+<h1>这是一个标题</h1>
+<h2>这是一个标题</h2>
+<h3>这是一个标题</h3>
+<p>我的第一个段落。</p>
+<p>这是一个段落。</p>
+<p>这是另外一个段落。</p>
+<a href="https://www.bilibili.com/">这是一个链接</a>
+
+<!-- 添加上传图片的功能 -->
+<div id="uploadContainer">
+  <input type="file" id="fileInput" accept="image/*" style="display:none;"/> <!-- 隐藏文件输入元素 -->
+  <button type="button" id="uploadButton">上传图片</button>
+</div>
+
+<!-- 图片显示容器 -->
+<div id="imageContainer" style="margin-top: 20px;"></div>
+
+</body>
+</html>
